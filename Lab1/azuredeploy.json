@@ -1,0 +1,41 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountPrefix": {
+            "type": "string",
+            "defaultValue": "stacjf",
+            "metadata": {
+                "description": "Storage account prefix"
+            }
+        },
+        "accountType": {
+            "type": "string",
+            "defaultValue": "Standard_LRS",
+            "allowedValues": [
+                "Standard_LRS",
+                "Premium_LRS",
+                "Standard_RAGRS"
+            ],
+            "metadata": {
+                "description": "Storage account type"
+            }
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[concat( parameters('storageaccountPrefix'), uniqueString(resourceGroup().id) )]",
+            "apiVersion": "2015-06-15",
+            "location": "[resourceGroup().location]",
+            "tags": {
+                "displayName": "[concat( parameters('storageaccountPrefix'), uniqueString(resourceGroup().id) )]"
+            },
+            "properties": {
+                "accountType": "[parameters('accountType')]"
+            }
+        }
+    ],
+    "outputs": {}
+}
