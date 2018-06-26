@@ -22,15 +22,17 @@
             }
         }
     },
-    "variables": {},
+    "variables": {
+        "storageaccountname": "[concat( parameters('storageaccountPrefix'), uniqueString(resourceGroup().id) )]"
+    },
     "resources": [
         {
             "type": "Microsoft.Storage/storageAccounts",
-            "name": "[concat( parameters('storageaccountPrefix'), uniqueString(resourceGroup().id) )]",
+            "name": "[variables('storageaccountname')]",
             "apiVersion": "2015-06-15",
             "location": "[resourceGroup().location]",
             "tags": {
-                "displayName": "[concat( parameters('storageaccountPrefix'), uniqueString(resourceGroup().id) )]"
+                "displayName": "[variables('storageaccountname')]"
             },
             "properties": {
                 "accountType": "[parameters('accountType')]"
