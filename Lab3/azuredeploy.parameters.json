@@ -1,0 +1,20 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "adminUsername": {
+        "value": "jfadmin"
+      },
+      "adminPassword": {
+        "reference": {
+          "keyVault": {
+            "id": "/subscriptions/04fcf306-a42c-4f1b-8079-18d7a9b1eb3b/resourceGroups/lab3/providers/Microsoft.KeyVault/vaults/jf-kv01"
+          },
+          "secretName": "ubuntuDefaultPassword"
+        }
+    },
+      "dnsLabelPrefix": {
+        "value": "jfarmlabvm110"
+      }
+    }
+  }
